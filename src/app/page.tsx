@@ -1,163 +1,187 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { appConfig } from "@/lib/config";
-import { ArrowRight, BookOpen, Mic, FileText, Image, Sparkles, Film, PenTool, Megaphone, TrendingUp, Palette } from "lucide-react";
+
+const storyPosters = [
+  {
+    title: "ORIGIN STORY",
+    tagline: "Where it all began",
+    icon: (
+      <svg viewBox="0 0 64 64" className="h-24 w-24 text-rose-500/10" fill="currentColor">
+        <path d="M32 56c-1.1 0-2-.9-2-2V36c0-4.4-3.6-8-8-8h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c4.4 0 8-3.6 8-8V10c0-1.1.9-2 2-2s2 .9 2 2v6c0 5.2-3.4 9.6-8 11.2V28c4.6 1.6 8 6 8 11.2V54c0 1.1-.9 2-2 2z" />
+        <circle cx="32" cy="10" r="4" />
+      </svg>
+    ),
+  },
+  {
+    title: "LAUNCH NARRATIVE",
+    tagline: "The world premiere",
+    icon: (
+      <svg viewBox="0 0 64 64" className="h-24 w-24 text-rose-500/10" fill="currentColor">
+        <path d="M32 4l4 16h16l-13 9.5 5 15.5-12-9-12 9 5-15.5L12 20h16z" />
+        <path d="M32 50v10M28 56h8" strokeWidth="2" stroke="currentColor" fill="none" />
+      </svg>
+    ),
+  },
+  {
+    title: "THE PITCH",
+    tagline: "Three minutes to change everything",
+    icon: (
+      <svg viewBox="0 0 64 64" className="h-24 w-24 text-rose-500/10" fill="currentColor">
+        <ellipse cx="32" cy="52" rx="20" ry="4" opacity="0.3" />
+        <path d="M32 8v36M24 12l8-4 8 4" strokeWidth="3" stroke="currentColor" fill="none" />
+        <circle cx="32" cy="44" r="8" opacity="0.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "CASE STUDY",
+    tagline: "The proof is in the story",
+    icon: (
+      <svg viewBox="0 0 64 64" className="h-24 w-24 text-rose-500/10" fill="currentColor">
+        <path d="M20 8h24l8 8v40H12V8h8z" opacity="0.3" />
+        <path d="M32 24l4 8 8 2-6 6 2 8-8-4-8 4 2-8-6-6 8-2z" />
+      </svg>
+    ),
+  },
+  {
+    title: "BRAND MANIFESTO",
+    tagline: "What you stand for",
+    icon: (
+      <svg viewBox="0 0 64 64" className="h-24 w-24 text-rose-500/10" fill="currentColor">
+        <path d="M16 12h4v40h-4zM20 12h20v6H20z" />
+        <path d="M20 18h18v6H20z" opacity="0.7" />
+      </svg>
+    ),
+  },
+  {
+    title: "PRODUCT EXPLAINER",
+    tagline: "Complex made clear",
+    icon: (
+      <svg viewBox="0 0 64 64" className="h-24 w-24 text-rose-500/10" fill="currentColor">
+        <circle cx="32" cy="20" r="12" opacity="0.3" />
+        <path d="M32 36v8M30 48h4v4h-4z" />
+        <circle cx="32" cy="20" r="4" />
+      </svg>
+    ),
+  },
+];
+
+const credits = [
+  { phase: "PRE-PRODUCTION", desc: "Choose your story type" },
+  { phase: "PRODUCTION", desc: "Build section by section" },
+  { phase: "POST-PRODUCTION", desc: "Review & refine" },
+  { phase: "PREMIERE", desc: "Publish & share" },
+];
 
 export default function LandingPage() {
-  const storyTypes = [
-    { title: "Origin Story", desc: "Where you came from and why it matters", icon: Sparkles },
-    { title: "Launch Narrative", desc: "Turn a release into a felt moment", icon: TrendingUp },
-    { title: "Investor Pitch", desc: "The story behind the numbers", icon: Megaphone },
-    { title: "Case Study", desc: "Your customer as the hero", icon: BookOpen },
-    { title: "Brand Manifesto", desc: "What you believe and why anyone should care", icon: PenTool },
-    { title: "Product Explainer", desc: "Complex made simple, simple made compelling", icon: Film },
-  ];
-
-  const features = [
-    {
-      title: "Guided Story Builder",
-      desc: "Section-by-section writing with built-in guidance, word targets, and progress tracking. Never stare at a blank page again.",
-      icon: BookOpen,
-    },
-    {
-      title: "Brand Voice Engine",
-      desc: "Define your tone, capture what to say and what to avoid. Every story stays on-brand, every time.",
-      icon: Mic,
-    },
-    {
-      title: "Story Templates",
-      desc: "Origin stories, launch narratives, investor pitches, case studies, and manifestos. Start with structure, finish with soul.",
-      icon: FileText,
-    },
-    {
-      title: "Media Library",
-      desc: "Organise images, video, audio, and documents alongside your narratives. Every asset linked to the story it serves.",
-      icon: Image,
-    },
-  ];
-
   return (
-    <div className="flex min-h-screen flex-col bg-[#1c1917]">
-      {/* Nav */}
-      <header className="border-b border-white/10">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <div className="flex min-h-screen flex-col bg-black text-white">
+      {/* Top letterbox bar */}
+      <div className="h-[5vh] bg-[#0a0a0a] w-full flex-shrink-0" />
+
+      {/* Nav — sits just below letterbox */}
+      <header className="bg-black">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-600 text-white text-sm font-bold">
-              <Film className="h-4 w-4" />
-            </div>
-            <span className="font-semibold text-lg text-white">{appConfig.name}</span>
+            {/* Film reel icon */}
+            <svg viewBox="0 0 24 24" className="h-5 w-5 text-rose-500" fill="currentColor">
+              <circle cx="12" cy="12" r="10" opacity="0.2" />
+              <circle cx="12" cy="12" r="3" />
+              <circle cx="12" cy="5" r="1.5" />
+              <circle cx="12" cy="19" r="1.5" />
+              <circle cx="5" cy="12" r="1.5" />
+              <circle cx="19" cy="12" r="1.5" />
+            </svg>
+            <span className="font-semibold text-sm tracking-wider text-white uppercase">
+              {appConfig.name}
+            </span>
           </div>
-          <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="ghost" className="text-stone-400 hover:text-white hover:bg-white/10">Sign in</Button>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/login"
+              className="text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
+            >
+              Sign in
             </Link>
-            <Link href="/signup">
-              <Button className="bg-rose-600 hover:bg-rose-700 text-white">Get started</Button>
+            <Link
+              href="/signup"
+              className="text-sm text-rose-400 border border-rose-500/40 rounded px-3 py-1.5 hover:bg-rose-500/10 transition-colors"
+            >
+              Get started
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-600/8 via-transparent to-amber-500/5" />
-        <div className="mx-auto flex max-w-6xl flex-col items-center px-4 pt-28 pb-20 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-1.5 mb-8">
-            <Palette className="h-3.5 w-3.5 text-rose-400" />
-            <span className="text-sm font-medium text-rose-400">Story Production Studio</span>
-          </div>
-          <h1 className="max-w-4xl text-5xl font-bold tracking-tight sm:text-7xl text-white leading-[1.1]">
-            The ride of a lifetime
+      {/* Hero — Cinematic text reveal */}
+      <section className="flex-1 flex items-center justify-center px-6 py-24 sm:py-32">
+        <div className="text-center max-w-4xl">
+          <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05]">
+            Every company has a story.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-stone-400 leading-relaxed">
-            Complex products deserve felt stories. Build narratives that move people to action.
+          <p className="mt-6 text-3xl sm:text-4xl font-medium text-rose-400 tracking-tight">
+            Most tell it badly.
           </p>
-          <div className="mt-10 flex gap-4">
-            <Link href="/signup">
-              <Button size="lg" className="bg-rose-600 hover:bg-rose-700 text-white px-8 h-12 text-base">
-                Start telling your story
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="border-stone-700 text-stone-300 hover:bg-white/5 h-12 text-base">
-                Sign in
-              </Button>
-            </Link>
-          </div>
+          <p className="mt-8 text-xl sm:text-2xl text-neutral-400 font-light">
+            We fix that.
+          </p>
         </div>
       </section>
 
-      {/* Story Types */}
-      <section className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-rose-400 tracking-widest uppercase mb-3">Story types</p>
-            <h2 className="text-3xl font-bold text-white">Six stories every company needs</h2>
-            <p className="mt-3 text-stone-400 max-w-xl mx-auto">Each one built with structure, guided by craft, and tuned to your voice.</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3 sm:grid-cols-2">
-            {storyTypes.map((story) => (
-              <div key={story.title} className="group rounded-lg border border-white/10 bg-white/[0.03] p-6 hover:border-rose-500/40 hover:bg-rose-500/5 transition-all cursor-pointer">
-                <story.icon className="h-6 w-6 text-rose-400 mb-3 group-hover:text-rose-300 transition-colors" />
-                <h3 className="font-semibold text-white">{story.title}</h3>
-                <p className="mt-1 text-sm text-stone-500">{story.desc}</p>
+      {/* Story Posters — 3x2 grid */}
+      <section className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {storyPosters.map((poster) => (
+            <div
+              key={poster.title}
+              className="group relative rounded-lg overflow-hidden border border-white/5 hover:border-rose-500/30 transition-all cursor-pointer"
+              style={{ aspectRatio: "2/3" }}
+            >
+              {/* Dark background with bottom gradient */}
+              <div className="absolute inset-0 bg-[#0d0d0d]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+              {/* Faded icon in center */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-80 transition-opacity">
+                {poster.icon}
               </div>
-            ))}
-          </div>
+
+              {/* Text at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <h3 className="text-rose-400 font-bold text-sm sm:text-base tracking-wider">
+                  {poster.title}
+                </h3>
+                <p className="text-neutral-500 text-xs sm:text-sm mt-1">
+                  {poster.tagline}
+                </p>
+              </div>
+
+              {/* Hover brightness overlay */}
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.03] transition-colors" />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="border-t border-white/10 bg-white/[0.02]">
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <p className="text-sm font-medium text-rose-400 tracking-widest uppercase mb-3">Capabilities</p>
-          <h2 className="text-3xl font-bold text-white">Everything you need to tell stories that land</h2>
-          <p className="mt-2 text-stone-400 max-w-2xl">
-            From first draft to final cut. Structure, voice, and assets in one focused workspace.
-          </p>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div key={feature.title} className="rounded-lg border border-white/10 bg-white/[0.03] p-6 hover:border-rose-500/30 transition-colors">
-                  <Icon className="h-8 w-8 text-rose-400" />
-                  <h3 className="mt-4 text-lg font-semibold text-white">{feature.title}</h3>
-                  <p className="mt-2 text-stone-400 leading-relaxed">{feature.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Quote */}
-      <section className="border-t border-white/10">
-        <div className="mx-auto max-w-4xl px-4 py-20 text-center">
-          <div className="text-5xl text-rose-500/20 mb-4">&ldquo;</div>
-          <blockquote className="text-2xl font-medium text-white leading-relaxed italic">
-            Every great company has a story. Most tell it badly.
-          </blockquote>
-          <p className="mt-6 text-sm text-stone-600 tracking-wide">This is why Playbook Films exists.</p>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="border-t border-white/10 bg-white/[0.02]">
-        <div className="mx-auto max-w-6xl px-4 py-20">
-          <p className="text-sm font-medium text-rose-400 tracking-widest uppercase mb-3">Process</p>
-          <h2 className="text-3xl font-bold text-white">From blank page to final cut</h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-4">
-            {[
-              { step: "01", title: "Choose your story", desc: "Pick a template. Origin, launch, pitch, case study, manifesto, or explainer." },
-              { step: "02", title: "Set the voice", desc: "Define your brand tone, key phrases, and guardrails. The voice engine keeps you consistent." },
-              { step: "03", title: "Write with guidance", desc: "Section by section, with prompts, word targets, and structure that frees your creativity." },
-              { step: "04", title: "Polish and publish", desc: "Attach media, review the arc, and export a narrative that makes people feel something." },
-            ].map((item) => (
-              <div key={item.step} className="space-y-3">
-                <span className="text-4xl font-bold text-rose-500/20">{item.step}</span>
-                <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                <p className="text-sm text-stone-500 leading-relaxed">{item.desc}</p>
+      {/* Process as Film Credits */}
+      <section className="border-t border-white/5">
+        <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+          <div className="space-y-10">
+            {credits.map((credit, i) => (
+              <div key={credit.phase}>
+                <p className="text-xs font-mono tracking-[0.4em] text-neutral-600 uppercase mb-2">
+                  {credit.phase}
+                </p>
+                <p className="text-lg sm:text-xl text-neutral-300 font-light">
+                  {credit.desc}
+                </p>
+                {i < credits.length - 1 && (
+                  <div className="mt-10 flex justify-center">
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-neutral-700" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                      <path d="M12 5v14M5 12l7 7 7-7" />
+                    </svg>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -165,28 +189,31 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-20 text-center">
-          <h2 className="text-3xl font-bold text-white">Your product has a story worth telling</h2>
-          <p className="mt-4 text-lg text-stone-400">
-            Stop writing changelogs. Start writing narratives that make people care.
-          </p>
-          <Link href="/signup" className="mt-8 inline-block">
-            <Button size="lg" className="bg-rose-600 hover:bg-rose-700 text-white px-8 h-12 text-base">
-              Create free account
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+      <section className="border-t border-white/5">
+        <div className="mx-auto max-w-6xl px-6 py-24 text-center">
+          <Link
+            href="/signup"
+            className="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white rounded px-8 py-4 text-lg font-medium transition-colors"
+          >
+            Start your story
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2}>
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 text-sm text-stone-600">
-          <span>&copy; {new Date().getFullYear()} {appConfig.name}. All rights reserved.</span>
-          <span>A 12 Cities venture</span>
+      {/* Footer — Film studio credit style */}
+      <footer className="border-t border-white/5 mt-auto">
+        <div className="mx-auto max-w-6xl px-6 py-8 text-center">
+          <p className="text-xs font-mono tracking-[0.3em] text-neutral-600 uppercase">
+            {appConfig.name} &mdash; A 12 Cities Production
+          </p>
         </div>
       </footer>
+
+      {/* Bottom letterbox bar */}
+      <div className="h-[5vh] bg-[#0a0a0a] w-full flex-shrink-0" />
     </div>
   );
 }
